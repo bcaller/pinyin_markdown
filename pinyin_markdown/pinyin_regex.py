@@ -56,6 +56,7 @@ def _polysyllabic_word_re_str():
     return '\\b((?:{})+r?)\\b'.format(toned_syllable)
 
 
+# This is the string which becomes the regex which searches for pinyin words
 POLYSYLLABIC_REGEX_STR = _polysyllabic_word_re_str()
 _SOUND_SPLITTER = _sounds_re(True)
 

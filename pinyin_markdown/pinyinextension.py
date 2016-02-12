@@ -28,21 +28,29 @@ class RemoveJunkParentTreeprocessor(Treeprocessor):
                 i += 1
 
 
-def make_span(parent, text, cls):
-    span = etree.SubElement(parent, "span")
-    span.text = text
-    if cls is not None and len(cls) > 0:
-        span.attrib = {"class": cls}
-    return span
-
-
 class NumberedPinyinPattern(Pattern):
     def __init__(self, *args, **kwargs):
         _tone_class = kwargs.pop('tone_class')
         self.tone_class = (lambda tone: _tone_class.format(tone)) if _tone_class is not None else lambda x: None
         self.erhua_class = kwargs.pop('erhua_class')
         self.apostrophe_class = kwargs.pop('apostrophe_class')
+        self.as_entities = kwargs.pop('entities')
         super(NumberedPinyinPattern, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def make_span(parent, text, cls):
+        span = etree.SubElement(parent, "span")
+        span.text = text
+        if cls is not None and len(cls) > 0:
+            span.attrib = {"class": cls}
+        return span
+
+    @staticmethod
+    def convert_to_entities(accented):
+        for c in accented:
+            if ord(c) > 122:  # Z is 122
+                return accented.replace(c, '&#{};'.format(ord(c)))
+        return accented
 
     def handleMatch(self, m):
         """
@@ -57,14 +65,16 @@ class NumberedPinyinPattern(Pattern):
         parent = etree.Element(JUNK_TAG)
         for i, sound in enumerate(pinyin_regex.split_syllables(polysyllabic_chinese_word)):
             if sound == 'r':
-                make_span(parent, 'r', self.erhua_class)
+                self.make_span(parent, 'r', self.erhua_class)
             else:
                 if i > 0 and sound[0] in 'aeo':
-                    make_span(parent, "'", self.apostrophe_class)
+                    self.make_span(parent, "'", self.apostrophe_class)
                 accented = numbered_accented.numbered_syllable_to_accented(sound)
                 if accented == sound:
                     raise Exception("Pinyin conversion error: " + sound)
-                make_span(parent, accented, self.tone_class(sound[-1]))
+                if self.as_entities:
+                    accented = self.convert_to_entities(accented)
+                self.make_span(parent, accented, self.tone_class(sound[-1]))
         return parent
 
 
@@ -74,16 +84,19 @@ class PinyinExtension(Extension):
 
         self.config = {
             'tone_class': ['tone{}', "HTML class name for tones, which will be formatted with tone_class.format(tone)"
-                                     "May be empty"
                                      "where tone is a number [1-5]"
-                                     " - Default: True"],
-            'erhua_class': ['erhua', "Class for the erhua (r in dian3r)"
+                                     "May be empty"
+                                     " - Default: 'tone{}'"],
+            'erhua_class': ['erhua', "HTML class name for the erhua 'r' e.g. in dianr"
                                      "May be empty"
                                      " - Default: 'erhua"],
-            'apostrophe_class': ['pyap', "Class for apostrophe inserted between vowels"
+            'apostrophe_class': ['pyap', "HTML class name for apostrophes needed between vowels"
                                          "e.g. xi3an4 => xi3an4"
                                          "May be empty"
-                                         " - Default: pyap"]
+                                         " - Default: pyap"],
+            'entities': [False, "If True, output the accented characters as entity codes"
+                                " like &#466;"
+                                " - Default: False"]
         }
 
         super(PinyinExtension, self).__init__(*args, **kwargs)
@@ -93,7 +106,8 @@ class PinyinExtension(Extension):
         pinyin_pattern = NumberedPinyinPattern(pinyin_regex.POLYSYLLABIC_REGEX_STR,
                                                tone_class=config.get('tone_class', 'tone{}'),
                                                erhua_class=config.get('erhua_class', 'erhua'),
-                                               apostrophe_class=config.get('apostrophe_class', 'pyap'))
+                                               apostrophe_class=config.get('apostrophe_class', 'pyap'),
+                                               entities=config.get('entities', False))
         md.inlinePatterns.add('pinyin', pinyin_pattern, '_begin')
         md.treeprocessors.add('pinyin_remove_junk', RemoveJunkParentTreeprocessor(md), '_end')
 

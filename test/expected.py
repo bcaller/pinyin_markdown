@@ -7,19 +7,23 @@ md_html = [
         '<span class="tone2">ó</span> xing4qi <span class="tone3">yǒu</span>'
     ], [
         'wo3de5**yao4shi4**bu2.jian**4le**5.',
-        '<span class="tone3">wǒ</span><span class="tone5">de</span><strong><span class="tone4">yào</span><span class="tone4">shì</span></strong><span class="tone2">bú</span>.jian<strong>4le</strong>5.'
+        '<span class="tone3">wǒ</span><span class="tone5">de</span><strong><span class="tone4">yào</span>'
+        '<span class="tone4">shì</span></strong><span class="tone2">bú</span>.jian<strong>4le</strong>5.'
     ], [
         'foo xing3fa4 ni3hao3 bar',
-        'foo <span class="tone3">xǐng</span><span class="tone4">fà</span> <span class="tone3">nǐ</span><span class="tone3">hǎo</span> bar'
+        'foo <span class="tone3">xǐng</span><span class="tone4">fà</span> <span class="tone3">nǐ</span>'
+        '<span class="tone3">hǎo</span> bar'
     ], [
         'Xi3an4',
         '<span class="tone3">Xǐ</span><span class="pyap">\'</span><span class="tone4">àn</span>'
     ], [
         'lu3 lu:3 lv3 lu:5',
-        '<span class="tone3">lǔ</span> <span class="tone3">lǚ</span> <span class="tone3">lǚ</span> <span class="tone5">lü</span>'
+        '<span class="tone3">lǔ</span> <span class="tone3">lǚ</span> <span class="tone3">lǚ</span> '
+        '<span class="tone5">lü</span>'
     ], [
         'Tian1an1men2 Guang3Chang3?',
-        '<span class="tone1">Tiān</span><span class="pyap">\'</span><span class="tone1">ān</span><span class="tone2">mén</span> <span class="tone3">Guǎng</span><span class="tone3">Chǎng</span>?'
+        '<span class="tone1">Tiān</span><span class="pyap">\'</span><span class="tone1">ān</span>'
+        '<span class="tone2">mén</span> <span class="tone3">Guǎng</span><span class="tone3">Chǎng</span>?'
     ], [
         'di4-Er4',
         '<span class="tone4">dì</span>-<span class="tone4">Èr</span>'

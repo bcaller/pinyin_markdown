@@ -17,11 +17,6 @@ def pinyin_markdown(request):
     return Markdown(extensions=[request.param])
 
 
-@pytest.fixture
-def pinyin_md_config():
-    return Markdown(extensions=['pinyin_markdown(tone_class=,erhua_class=)'])
-
-
 @pytest.fixture(params=["hello", "fanian", "fa xing4qi you", "NI3HAO3"])
 def pass_through(request):
     return request.param
@@ -54,6 +49,14 @@ def test_conversion_neutral(pinyin_markdown):
         assert pinyin_markdown.convert(syllable + '5') == '<p><span class="tone5">{}</span></p>'.format(syllable)
 
 
-def test_no_classes(pinyin_md_config):
-    assert pinyin_md_config.convert('lu:5') == '<p><span>lü</span></p>'
-    assert pinyin_md_config.convert('yi1dian3r') == '<p><span>yī</span><span>diǎn</span><span>r</span></p>'
+def test_no_classes():
+    pinyin_md_no_classes = Markdown(extensions=['pinyin_markdown(tone_class=,erhua_class=,entities=False)'])
+    assert pinyin_md_no_classes.convert('lu:5') == '<p><span>lü</span></p>'
+    assert pinyin_md_no_classes.convert('yi1dian3r') == '<p><span>yī</span><span>diǎn</span><span>r</span></p>'
+
+
+def test_entities():
+    pinyin_md_no_classes = Markdown(extensions=['pinyin_markdown(entities=True)'])
+    assert pinyin_md_no_classes.convert('lu:5') == '<p><span class="tone5">l&#252;</span></p>'
+    assert pinyin_md_no_classes.convert('yi1dian3') ==\
+        '<p><span class="tone1">y&#299;</span><span class="tone3">di&#462;n</span></p>'

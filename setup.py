@@ -27,9 +27,28 @@ def readme():
 
 setup(
     name='pinyin_markdown',
-    version='1.0',
+    version='0.8',
     py_modules=['pinyin_markdown'],
+    license='GPL',
+    author='bcaller',
+    author_email='bcaller [at] gmail dot com',
     tests_require=['pytest'],
     cmdclass={'test': PyTest},
     install_requires=['markdown>=2.5'],
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Topic :: Text Processing :: Filters',
+        'Topic :: Text Processing :: Markup :: HTML'
+      ]
 )
