@@ -33,9 +33,7 @@ The three examples above are rendered as:  yīdiǎnr, Xǐ'àn and lü, with HTML
 ## Options
 | Option    | Type | Default |Description |
 |-----------|------|---------|------------|
-| tone_class | str | 'tone{}' | HTML class name for tones,
-which will be formatted with tone_class.format(tone) 
-where tone is a number 1-5|
+| tone_class | str | 'tone{}' | HTML class name for tones, which will be formatted with tone_class.format(tone) where tone is a number 1-5|
 | apostrophe_class | str | 'pyap' | HTML class name for apostrophes needed between vowels |
 | erhua_class | str | 'erhua' | HTML class name for the erhua 'r' e.g. in dianr |
 | entities | bool | False | If True, output the accented characters as entity codes `&466#;` |
