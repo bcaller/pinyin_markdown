@@ -1,4 +1,7 @@
 language: python
+branches:
+  except:
+    - gh-pages
 install:
   - pip install tox
   - pip install codecov

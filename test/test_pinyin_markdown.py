@@ -77,3 +77,9 @@ def test_entities(pinyin_md_entities):
 
 def test_fenced_code_unaffected(pinyin_markdown):
     assert MarkdownTest('x `li3 li2 li1` y', 'x <code>li3 li2 li1</code> y')(pinyin_markdown)
+
+
+def test_urls_unaffected(pinyin_markdown):
+    assert MarkdownTest('http://x.com/wo3 [wo3](http://x.com/wo3)',
+                        'http://x.com/<span class="tone3">wǒ</span> '
+                        '<a href="http://x.com/wo3"><span class="tone3">wǒ</span></a>')(pinyin_markdown)
