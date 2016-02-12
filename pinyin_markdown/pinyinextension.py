@@ -30,11 +30,11 @@ class RemoveJunkParentTreeprocessor(Treeprocessor):
 
 class NumberedPinyinPattern(Pattern):
     def __init__(self, *args, **kwargs):
-        _tone_class = kwargs.pop('tone_class')
-        self.tone_class = (lambda tone: _tone_class.format(tone)) if _tone_class is not None else lambda x: None
+        tone_cls = kwargs.pop('tone_class')
+        self.tone_class = (lambda tone: tone_cls.format(tone)) if tone_cls is not None else lambda x: None
         self.erhua_class = kwargs.pop('erhua_class')
         self.apostrophe_class = kwargs.pop('apostrophe_class')
-        self.as_entities = kwargs.pop('entities')
+        self.entities = kwargs.pop('entities')
         super(NumberedPinyinPattern, self).__init__(*args, **kwargs)
 
     @staticmethod
@@ -72,7 +72,7 @@ class NumberedPinyinPattern(Pattern):
                 accented = numbered_accented.numbered_syllable_to_accented(sound)
                 if accented == sound:
                     raise Exception("Pinyin conversion error: " + sound)
-                if self.as_entities:
+                if self.entities:
                     accented = self.convert_to_entities(accented)
                 self.make_span(parent, accented, self.tone_class(sound[-1]))
         return parent
@@ -102,13 +102,8 @@ class PinyinExtension(Extension):
         super(PinyinExtension, self).__init__(*args, **kwargs)
 
     def extendMarkdown(self, md, md_globals):
-        config = self.getConfigs()
-        pinyin_pattern = NumberedPinyinPattern(pinyin_regex.POLYSYLLABIC_REGEX_STR,
-                                               tone_class=config.get('tone_class', 'tone{}'),
-                                               erhua_class=config.get('erhua_class', 'erhua'),
-                                               apostrophe_class=config.get('apostrophe_class', 'pyap'),
-                                               entities=config.get('entities', False))
-        md.inlinePatterns.add('pinyin', pinyin_pattern, '_begin')
+        pinyin_pattern = NumberedPinyinPattern(pinyin_regex.POLYSYLLABIC_REGEX_STR, **self.getConfigs())
+        md.inlinePatterns.add('pinyin', pinyin_pattern, '_end')
         md.treeprocessors.add('pinyin_remove_junk', RemoveJunkParentTreeprocessor(md), '_end')
 
 
