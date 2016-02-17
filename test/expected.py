@@ -30,6 +30,9 @@ md_html = [
     ], [
         'yi1dian3r',
         '<span class="tone1">yī</span><span class="tone3">diǎn</span><span class="erhua">r</span>'
+    ], [
+        'kuang4er2',
+        '<span class="tone4">kuàng</span><span class="pyap">\'</span><span class="tone2">ér</span>'
     ]
 ]
 
