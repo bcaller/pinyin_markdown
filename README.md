@@ -47,4 +47,4 @@ git clone https://github.com/bcaller/pinyin_markdown.git
 pip install -e ./pinyin_markdown
 ```
 
-Also have a look at [tsroten's zhon](https://github.com/tsroten/zhon) for more advanced pinyin libraries.
+Also have a look at [tsroten's zhon](https://github.com/tsroten/zhon) for more Python pinyin goodness.
