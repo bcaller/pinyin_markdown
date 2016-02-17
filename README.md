@@ -26,7 +26,7 @@ The three examples above are rendered as:  yīdiǎnr, Xǐ'àn and lü, with HTML
 
 ```html
 <span class="tone1">yī</span><span class="tone3">diǎn</span><span class="erhua">r</span>
-<span class="tone3">Xǐ</span><span class="pyap">\'</span><span class="tone4">àn</span>
+<span class="tone3">Xǐ</span><span class="pyap">'</span><span class="tone4">àn</span>
 <span class="tone5">lü</span>
 ```
 
