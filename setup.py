@@ -1,3 +1,4 @@
+from os import path
 import sys
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
@@ -22,16 +23,20 @@ class PyTest(TestCommand):
 
 
 def readme():
-    with open('README.md') as f:
+    with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding="utf8") as f:
         return f.read()
 
 setup(
     name='pinyin_markdown',
     version='0.8',
+    description='Type Chinese pinyin with tone numbers in Markdown. Get accented pinyin.',
+    long_description=readme(),
+    url='https://github.com/bcaller/pinyin_markdown',
     py_modules=['pinyin_markdown'],
-    license='GPL',
-    author='bcaller',
+    license='AGPLv3',
+    author='Ben Caller',
     author_email='bcaller [at] gmail dot com',
+    keywords='pinyin chinese markdown',
     tests_require=['pytest'],
     cmdclass={'test': PyTest},
     install_requires=['markdown>=2.5'],
@@ -47,6 +52,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Text Processing :: Filters',
-        'Topic :: Text Processing :: Markup :: HTML'
+        'Topic :: Text Processing :: Markup :: HTML',
+        'License :: OSI Approved :: GNU Affero General Public License v3'
       ]
 )

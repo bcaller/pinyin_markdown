@@ -40,11 +40,17 @@ The three examples above are rendered as:  yīdiǎnr, Xǐ'àn and lü, with HTML
 
 
 ## Installation
-While we're not on pip:
+From Github:
 
 ```
 git clone https://github.com/bcaller/pinyin_markdown.git
 pip install -e ./pinyin_markdown
+```
+
+From Pypi:
+
+```
+pip install pinyin_markdown
 ```
 
 Also have a look at [tsroten's zhon](https://github.com/tsroten/zhon) for more Python pinyin goodness.
