@@ -28,7 +28,7 @@ def readme():
 
 setup(
     name='pinyin_markdown',
-    version='0.8',
+    version='0.8.1',
     description='Type Chinese pinyin with tone numbers in Markdown. Get accented pinyin.',
     long_description=readme(),
     url='https://github.com/bcaller/pinyin_markdown',

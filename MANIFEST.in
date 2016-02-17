@@ -1,3 +1,4 @@
 include LICENSE.txt
+include README.md
 recursive-include pinyin_markdown *.py
 recursive-include test *.py
