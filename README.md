@@ -3,6 +3,7 @@
 Type Chinese pinyin with tone numbers, and have them automagically converted to beautiful accented pinyin.
 
 [![travis](https://travis-ci.org/bcaller/pinyin_markdown.svg)](https://travis-ci.org/bcaller/pinyin_markdown)
+[![PyPI version](https://badge.fury.io/py/pinyin_markdown.svg)](https://badge.fury.io/py/pinyin_markdown)
 
 A Markdown extension that looks through your text for things like `yi1dian3r`, `Xi3an4` and `lu:5` and replaces
 them with accented pinyin. The pinyin syllables are marked up with span tags with classes denoting
