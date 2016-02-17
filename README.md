@@ -17,7 +17,7 @@ Add `'pinyin_markdown'` to your Markdown call and watch the magic unfold:
 >>> markdown.convert('i ♥ Xi3an4!')
 <p>i ♥ <span class="tone3">Xǐ</span><span class="pyap">'</span><span class="tone4">àn</span></p>
 
->>> markdown = Markdown(extensions=['pinyin_markdown(tone_class="", apostrophe_class="apo")']
+>>> markdown = Markdown(extensions=['pinyin_markdown(tone_class=, apostrophe_class=apo)']
 >>> markdown.convert('i ♥ Xi3an4!')
 <p>i ♥ <span>Xǐ</span><span class="apo">'</span><span>àn</span></p>
 ```
