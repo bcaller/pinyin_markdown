@@ -28,11 +28,12 @@ def readme():
 
 setup(
     name='pinyin_markdown',
-    version='0.8.1',
+    version='0.8.2',
     description='Type Chinese pinyin with tone numbers in Markdown. Get accented pinyin.',
     long_description=readme(),
     url='https://github.com/bcaller/pinyin_markdown',
     py_modules=['pinyin_markdown'],
+    packages=['pinyin_markdown'],
     license='AGPLv3',
     author='Ben Caller',
     author_email='bcallergmai@l.com',
