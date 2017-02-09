@@ -35,7 +35,7 @@ setup(
     py_modules=['pinyin_markdown'],
     license='AGPLv3',
     author='Ben Caller',
-    author_email='bcaller [at] gmail dot com',
+    author_email='bcallergmai@l.com',
     keywords='pinyin chinese markdown',
     tests_require=['pytest'],
     cmdclass={'test': PyTest},
